@@ -26,7 +26,7 @@ location /health {
 color syatem restarting
 systemctl restart nginx
 
-color enable and start nginx
+color enable nginx
 systemctl enable nginx
 
 color enable and start nginx
