@@ -28,6 +28,4 @@ systemctl restart nginx
 
 color enable nginx
 systemctl enable nginx
-
-color enable and start nginx
 systemctl start nginx
