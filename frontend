@@ -1,0 +1,31 @@
+source common.sh
+
+
+color install nginx
+dnf install nginx -y
+
+color remove file
+rm -rf /usr/share/nginx/html/*
+
+color download
+curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/expense-frontend-v2.zip
+cd /usr/share/nginx/html
+
+color unzip
+unzip /tmp/frontend.zip
+vim /etc/nginx/default.d/expense.conf
+
+proxy_http_version 1.1;
+
+location /api/ { proxy_pass http://localhost:8080/; }
+
+location /health {
+  stub_status on;
+  access_log off;
+}
+color syatem restarting
+systemctl restart nginx
+
+color enable and start nginx
+systemctl enable nginx
+systemctl start nginx
